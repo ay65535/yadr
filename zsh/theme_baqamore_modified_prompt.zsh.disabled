@@ -1,0 +1,14 @@
+# A theme based on http://baqamore.hatenablog.com/entry/2014/05/26/221233 theme
+parse-git-branch()
+{
+    local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    if [ -n "${branch}" ]; then
+        [ "${branch}" = "HEAD" ] && local branch=$(git rev-parse --short HEAD 2>/dev/null)
+        local statusis="$(git status --porcelain 2>/dev/null)"
+        echo -n " on %F{81}${branch}%f"
+        [ -n "${statusis}" ] && echo -n "%F{161}*%f"
+    fi
+}
+
+PROMPT="%F{135}%n%f at %F{166}%m%f in %F{118}%c%f$(parse-git-branch)
+%# "

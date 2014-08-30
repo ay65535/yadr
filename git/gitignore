@@ -6,6 +6,8 @@
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+# Custon Folder Icon
+#Icon
 
 # Windows   taken from: https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
 # ----------------------------------------------------------------------------------------------
@@ -41,7 +43,39 @@ cscope.po.out
 Session.vim
 .netrwhist
 *~
+# Maven
+#log/
+#target/
+.netrwhist
+*~
 
 # SASS
 # ----------------------------------------------------------------------------------------------
 .sass-cache
+
+# Backups
+*~
+*.swp
+
+# Compiled Python files
+*.pyc
+
+# Xcode
+#UserInterfaceState.xcuserstate
+
+# Java
+#*.class
+#*.jar
+#*.war
+#*.ear
+
+# necessary jars
+#!src/main/webapp/WEB-INF/lib/*.jar
+
+# Eclipse
+#.classpath
+#.project
+#.settings/
+
+# Subversion
+#.svn

@@ -1,16 +1,6 @@
 # set your user tokens as environment variables, such as ~/.secrets
 # See the README for examples.
-[color]
-  ui = true
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red
-  new = green
+
 [alias]
   # add
   a = add                           # add
@@ -44,6 +34,7 @@
   d = diff                          # diff unstaged changes
   dc = diff --cached                # diff staged changes
   last = diff HEAD^                 # diff last committed change
+  db = diff -b                      # diff ignore whitespaces
 
   # log
   l = log --graph --date=short
@@ -89,39 +80,257 @@
   svnr = svn rebase
   svnd = svn dcommit
   svnl = svn log --oneline --show-commit
-[format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
-[mergetool]
-  prompt = false
-[mergetool "mvimdiff"]
-  cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
-  keepbackup=false
-[merge]
-  summary = true
-  verbosity = 1
-  tool = mvimdiff
+
+  # View abbreviated SHA, description, and history graph of the latest 20 commits
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+
+  # View the current working tree status using the short format
+  s = status -s
+
+  # Show the diff between the latest commit and the current state
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+  # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+  # Pull in remote changes for the current repository and all its submodules
+  p = !"git pull; git submodule foreach git pull origin master"
+
+  # Clone a repository including all submodules
+  c = clone --recursive
+
+  # Commit all changes
+  ca = !git add -A && git commit -av
+
+  # Switch to a branch, creating it if necessary
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+
+  # Amend the currently staged files to the latest commit
+  amend = commit --amend --reuse-message=HEAD
+
+  # Credit an author on the latest commit
+  credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
+  # Interactive rebase with the given number of latest commits
+  reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+  # Find branches containing commit
+  fb = "!f() { git branch -a --contains $1; }; f"
+
+  # Find tags containing commit
+  ft = "!f() { git describe --always --contains $1; }; f"
+
+  # Find commits by source code
+  fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
+  # Find commits by commit message
+  fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+  # Remove branches that have already been merged with master
+  # a.k.a. ‘delete merged’
+  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+  # List contributors with number of commits
+  contributors = shortlog --summary --numbered
+
+  tr = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
+
 [apply]
-  whitespace = nowarn
-[branch]
-  autosetupmerge = true
-[push]
-  # 'git push' will push the current branch to its tracking branch
-  # the usual default is to push all branches
-  default = upstream
-[core]
-  autocrlf = false
-  editor = vim
-  excludesfile = ~/.yadr/git/gitignore
+  whitespace = fix     # Detect whitespace errors when applying a patch
+  #whitespace = nowarn
+
 [advice]
   statusHints = false
+
+[branch]
+  autosetupmerge = true
+
+[color]
+  # Use colors in Git commands that are capable of colored output when
+  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+  ui = auto
+  #ui = true
+
+  #branch = auto
+  #diff = auto
+  #status = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold # line info
+  old = red # deletions
+  new = green # additions
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[core]
+  autocrlf = false
+  #editor = vi
+  editor = vim
+  #pager = lv -c
+
+  # Use custom `.gitignore` and `.gitattributes`
+  #excludesfile = ~/Dropbox/dotfiles/config/git/ignore
+  #excludesfile = ~/Dropbox/dotfiles/gitignore
+  #excludesfile = "~/Dropbox/dotfiles/.gitignore"
+  #excludesfile = ~/.yadr/git/gitignore
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+
+  # Treat spaces before tabs and all kinds of trailing whitespace as an error
+  # [default] trailing-space: looks for spaces at the end of a line
+  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+  # Make `git rebase` safer on OS X
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+
+  precomposeunicode = true
+  sparsecheckout = true
+
+[credential]
+  helper = osxkeychain
+
 [diff]
   # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
   # instead of a/b/c/d as prefixes for patches
   mnemonicprefix = true
-	algorithm = patience
+  algorithm = patience
+
+  # Detect copies as well as renames
+  renames = copies
+
+  #external = p4diff
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+
+[ghq]
+  # ghqを使ったローカルリポジトリの統一的・効率的な管理について - delirious thoughts
+  # http://blog.kentarok.org/entry/2014/06/03/135300
+  #root = ~/.ghq
+  #root = ~/.go/src
+  root = ~/local/src
+
+[ghq "http://protobuf.googlecode.com/svn/"]
+  vcs = svn
+
+[ghq "http://sub-www.ubi.cs.ritsumei.ac.jp/svn/kubiwa/"]
+  vcs = svn
+
+[ghq "http://sub-www.ubi.cs.ritsumei.ac.jp/svn/kubiwa/trunk/AndroidLoggerClient/"]
+  vcs = svn
+
+[grep]
+  lineNumber = true
+
+[help]
+  # Automatically correct and execute mistyped commands
+  autocorrect = 1
+
+[include]
+  path = .gitconfig.user
+
+[merge]
+  # Include summaries of merged commits in newly created merge commit messages
+  log = true
+
+  summary = true
+  verbosity = 1
+  tool = mvimdiff
+  #tool = p4merge
+
+  #keepBackup = false
+
+[mergetool]
+  prompt = false
+
+[mergetool "mvimdiff"]
+  cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
+  keepbackup=false
+
+[mergetool "p4merge"]
+  cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  keepTemporaries = false
+  trustExitCode = false
+  keepBackup = false
+
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  #cmd = ~/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  #cmd = /Volumes/Mavericks/opt/homebrew-cask/Caskroom/sourcetree/1.9.8/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  #cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.8/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  #cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.4.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[pager]
+  log = diff-highlight | less
+  show = diff-highlight | less
+  diff = diff-highlight | less
+
+[push]
+  # Use the Git 1.x.x default to avoid errors on machines with old Git
+  # installations. To use `simple` instead, add this to your `~/.extra` file:
+  # `git config --global push.default simple`. See http://git.io/mMah-w.
+  #default = matching
+
+  # 'git push' will push the current branch to its tracking branch
+  # the usual default is to push all branches
+  #default = tracking
+
+  #default = simple
+
 [rerere]
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
-[include]
-  path = .gitconfig.user
+
+# URL shorthands
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+  insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+
+# http://motemen.hatenablog.com/entries/2014/07/02
+[url "git@github.com:ay65535"]
+  pushInsteadOf = https://github.com/ay65535
+
+#[url "git@ghe.example.com:"]
+#  insteadOf = https://ghe.example.com/
+
+[user]
+  name = ay65535
+  email = ay65535@icloud.com
