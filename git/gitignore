@@ -6,8 +6,6 @@
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-# Custon Folder Icon
-#Icon
 
 # Windows   taken from: https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
 # ----------------------------------------------------------------------------------------------
@@ -43,15 +41,19 @@ cscope.po.out
 Session.vim
 .netrwhist
 *~
+
+# SASS
+# ----------------------------------------------------------------------------------------------
+.sass-cache
+
+# Custon Folder Icon
+#Icon
+
 # Maven
 #log/
 #target/
 .netrwhist
 *~
-
-# SASS
-# ----------------------------------------------------------------------------------------------
-.sass-cache
 
 # Backups
 *~

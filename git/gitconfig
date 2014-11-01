@@ -1,6 +1,30 @@
 # set your user tokens as environment variables, such as ~/.secrets
 # See the README for examples.
+[color]
+  # Use colors in Git commands that are capable of colored output when
+  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+  ui = auto
+  #ui = true
 
+  ui = auto
+  #branch = auto
+  #diff = auto
+  #status = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold # line info
+  old = red # deletions
+  new = green # additions
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
 [alias]
   # add
   a = add                           # add
@@ -140,133 +164,10 @@
 
   tr = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
 
-[apply]
-  whitespace = fix     # Detect whitespace errors when applying a patch
-  #whitespace = nowarn
-
-[advice]
-  statusHints = false
-
-[branch]
-  autosetupmerge = true
-
-[color]
-  # Use colors in Git commands that are capable of colored output when
-  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-  ui = auto
-  #ui = true
-
-  #branch = auto
-  #diff = auto
-  #status = auto
-
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold # line info
-  old = red # deletions
-  new = green # additions
-
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
-
-[core]
-  autocrlf = false
-  #editor = vi
-  editor = vim
-  #pager = lv -c
-
-  # Use custom `.gitignore` and `.gitattributes`
-  #excludesfile = ~/Dropbox/dotfiles/config/git/ignore
-  #excludesfile = ~/Dropbox/dotfiles/gitignore
-  #excludesfile = "~/Dropbox/dotfiles/.gitignore"
-  #excludesfile = ~/.yadr/git/gitignore
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
-
-  # Treat spaces before tabs and all kinds of trailing whitespace as an error
-  # [default] trailing-space: looks for spaces at the end of a line
-  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-
-  # Make `git rebase` safer on OS X
-  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-  trustctime = false
-
-  precomposeunicode = true
-  sparsecheckout = true
-
-[credential]
-  helper = osxkeychain
-
-[diff]
-  # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
-  # instead of a/b/c/d as prefixes for patches
-  mnemonicprefix = true
-  algorithm = patience
-
-  # Detect copies as well as renames
-  renames = copies
-
-  #external = p4diff
-
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
-
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
-
-[ghq]
-  # ghqを使ったローカルリポジトリの統一的・効率的な管理について - delirious thoughts
-  # http://blog.kentarok.org/entry/2014/06/03/135300
-  #root = ~/.ghq
-  #root = ~/.go/src
-  root = ~/local/src
-
-[ghq "http://protobuf.googlecode.com/svn/"]
-  vcs = svn
-
-[ghq "http://sub-www.ubi.cs.ritsumei.ac.jp/svn/kubiwa/"]
-  vcs = svn
-
-[ghq "http://sub-www.ubi.cs.ritsumei.ac.jp/svn/kubiwa/trunk/AndroidLoggerClient/"]
-  vcs = svn
-
-[grep]
-  lineNumber = true
-
-[help]
-  # Automatically correct and execute mistyped commands
-  autocorrect = 1
-
-[include]
-  path = .gitconfig.user
-
-[merge]
-  # Include summaries of merged commits in newly created merge commit messages
-  log = true
-
-  summary = true
-  verbosity = 1
-  tool = mvimdiff
-  #tool = p4merge
-
-  #keepBackup = false
-
 [mergetool]
   prompt = false
-
 [mergetool "mvimdiff"]
   cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
   keepbackup=false
@@ -284,12 +185,22 @@
   #cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.8/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   #cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.4.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[merge]
+  # Include summaries of merged commits in newly created merge commit messages
+  log = true
 
-[pager]
-  log = diff-highlight | less
-  show = diff-highlight | less
-  diff = diff-highlight | less
+  summary = true
+  verbosity = 1
+  tool = mvimdiff
+  #tool = p4merge
 
+  #keepBackup = false
+[apply]
+  whitespace = fix     # Detect whitespace errors when applying a patch
+  #whitespace = nowarn
+
+[branch]
+  autosetupmerge = true
 [push]
   # Use the Git 1.x.x default to avoid errors on machines with old Git
   # installations. To use `simple` instead, add this to your `~/.extra` file:
@@ -301,12 +212,79 @@
   #default = tracking
 
   #default = simple
+[core]
+  autocrlf = false
+  #editor = vi
+  editor = vim
+  #pager = lv -c
 
+  # Use custom `.gitignore` and `.gitattributes`
+  excludesfile = ~/Dropbox/dotfiles/config/git/ignore  # default if $XDG_COMFIG_HOME is set.
+  #excludesfile = ~/Dropbox/dotfiles/gitignore
+  #excludesfile = "~/Dropbox/dotfiles/.gitignore"
+  #excludesfile = ~/.yadr/git/gitignore
+  #excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+
+  # Treat spaces before tabs and all kinds of trailing whitespace as an error
+  # [default] trailing-space: looks for spaces at the end of a line
+  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+  # Make `git rebase` safer on OS X
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+
+  precomposeunicode = true
+  sparsecheckout = true
+[advice]
+  statusHints = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[diff]
+  # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
+  # instead of a/b/c/d as prefixes for patches
+  mnemonicprefix = true
+  algorithm = patience
+
+  # Detect copies as well as renames
+  renames = copies
+
+  #external = p4diff
 [rerere]
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
+[include]
+  #path = .gitconfig.user
+  path = ~/Dropbox/dotfiles/config/git
+[credential]
+  helper = osxkeychain
 
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+[ghq]
+  # ghqを使ったローカルリポジトリの統一的・効率的な管理について - delirious thoughts
+  # http://blog.kentarok.org/entry/2014/06/03/135300
+  #root = ~/.ghq
+  #root = ~/.go/src
+  root = ~/src
+
+[ghq "http://protobuf.googlecode.com/svn/"]
+  vcs = svn
+
+[grep]
+  lineNumber = true
+
+[help]
+  # Automatically correct and execute mistyped commands
+  autocorrect = 1
+[pager]
+  log = diff-highlight | less
+  show = diff-highlight | less
+  diff = diff-highlight | less
 # URL shorthands
 [url "git@github.com:"]
   insteadOf = "gh:"
