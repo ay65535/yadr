@@ -179,7 +179,7 @@
   keepBackup = false
 
 [mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   #cmd = ~/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   #cmd = /Volumes/Mavericks/opt/homebrew-cask/Caskroom/sourcetree/1.9.8/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   #cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.8/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
@@ -219,7 +219,7 @@
   #pager = lv -c
 
   # Use custom `.gitignore` and `.gitattributes`
-  excludesfile = ~/Dropbox/dotfiles/config/git/ignore  # default if $XDG_COMFIG_HOME is set.
+	excludesfile = /Users/ats/local/src/github.com/ay65535/yadr/git/gitignore
   #excludesfile = ~/Dropbox/dotfiles/gitignore
   #excludesfile = "~/Dropbox/dotfiles/.gitignore"
   #excludesfile = ~/.yadr/git/gitignore
@@ -240,7 +240,7 @@
 [advice]
   statusHints = true
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	cmd = /usr/local/bin/twdiff --resume --reverse --wait \"$LOCAL\" \"$REMOTE\"
 	path =
 [diff]
   # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
@@ -258,7 +258,7 @@
   enabled = true
 [include]
   #path = .gitconfig.user
-  path = ~/Dropbox/dotfiles/config/git
+  #path = ~/Dropbox/dotfiles/config/git
 [credential]
   helper = osxkeychain
 
@@ -270,7 +270,7 @@
   # http://blog.kentarok.org/entry/2014/06/03/135300
   #root = ~/.ghq
   #root = ~/.go/src
-  root = ~/src
+  root = ~/local/src
 
 [ghq "http://protobuf.googlecode.com/svn/"]
   vcs = svn
@@ -310,5 +310,5 @@
 #  insteadOf = https://ghe.example.com/
 
 [user]
-  name = ay65535
-  email = ay65535@icloud.com
+	name = ay65535
+	email = ay65535@icloud.com
