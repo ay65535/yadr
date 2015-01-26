@@ -35,7 +35,6 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'archive' \
-  'fasd' \
   'git' \
   'osx' \
   'homebrew' \
@@ -43,9 +42,9 @@ zstyle ':prezto:load' pmodule \
   'ssh' \
   'prompt'
 
-#  'homebrew' \
 #  'ruby' \
 #  'python' \
+#  'fasd' \
 
 #
 # Editor
