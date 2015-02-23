@@ -10,14 +10,28 @@
   - chmod 600 ~/.ssh/authorized_keys
   - chmod 600 ~/.ssh/config
   -
-    command: echo pwd
-    stdin: true
-  -
-    command: pushd ~/.yadr && rake update
+    command: sudo tlmgr update --self --all
     stdin: true
     stdout: true
-  - popd
+    stderr: true
+  -
+    command: pushd ~/.yadr && rake update && popd
+    stdin: true
+    stdout: true
+    stderr: true
   - sed -i '' -e '/^for config_file .*config_file$/d' ~/.yadr/zsh/prezto/runcoms/zshrc
+  -
+    command: brew upgrade && brew cleanup && brew doctor || true
+    stdout: true
+    stderr: true
+  - # rubyはシステムのを使うなら sudo必要，rbenvのならいらない
+    command: if which update_rubygems >/dev/null; then update_rubygems; else gem update --system; fi && gem update && gem clean
+    stdout: true
+    stderr: true
+  - # python
+    command: if which pip-review >/dev/null; then pip-review --auto; else pip install -U && pip list | cut -d ' ' -f 1 | xargs -t -I% pip install -U % ; fi && print_cmd pip3 install -U ; pip3 list | cut -d ' ' -f 1 | xargs -t -I% pip3 install -U %
+    stdout: true
+    stderr: true
   #- [mkdir -p ~/downloads, Creating downloads directory]
   #-
   #  command: read var && echo Your variable is $var
