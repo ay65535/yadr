@@ -1,0 +1,117 @@
+- clean: ['~']
+
+- shell:
+  #- [git submodule update --init --recursive, Installing submodules]
+  - mkdir -p ~/.cache/shell
+  - mkdir -p ~/.cache/vim
+  - mkdir -p ~/local/share
+  - mkdir -p ~/local/src
+  - chmod 700 ~/.ssh
+  - chmod 600 ~/.ssh/authorized_keys
+  - chmod 600 ~/.ssh/config
+  -
+    command: echo pwd
+    stdin: true
+  -
+    command: pushd ~/.yadr && rake update
+    stdin: true
+    stdout: true
+  - popd
+  - sed -i '' -e '/^for config_file .*config_file$/d' ~/.yadr/zsh/prezto/runcoms/zshrc
+  #- [mkdir -p ~/downloads, Creating downloads directory]
+  #-
+  #  command: read var && echo Your variable is $var
+  #  stdin: true
+  #  stdout: true
+  #-
+  #  command: read fail
+  #  stderr: true
+
+- link:
+    ~/.aprc: /Users/ats/.yadr/irb/aprc
+    ~/.atom: /Users/ats/.dotfiles//atom.symlink
+    ~/.bash_logout: /Users/ats/Dropbox/dotfiles/bash_logout
+    ~/.bash_profile: /Users/ats/Dropbox/dotfiles/profile
+    ~/.bashrc: /Users/ats/Dropbox/dotfiles/bashrc
+    ~/.brew_api_token: /Users/ats/Dropbox/dotfiles/brew_api_token
+    ~/.config: /Users/ats/Dropbox/dotfiles/config
+    ~/.ctags: /Users/ats/.yadr/ctags/ctags
+    ~/.editrc: /Users/ats/.yadr/vimify/editrc
+    #~/.editrc: /Users/ats/Dropbox/dotfiles/editrc
+    ~/.emacs.d: /Users/ats/Dropbox/dotfiles/emacs.d
+    ~/.emacs.el: /Users/ats/Dropbox/dotfiles/emacs.el
+    ~/.escaped_colors.rb: /Users/ats/.yadr/irb/escaped_colors.rb
+    ~/.gemrc: /Users/ats/.yadr/ruby/gemrc
+    #~/.gemrc: /Users/ats/.dotfiles//ruby/gemrc.symlink
+    ~/.gitconfig: /Users/ats/.yadr/git/gitconfig
+    #~/.gitconfig: /Users/ats/.dotfiles//git/gitconfig.symlink
+    ~/.gitignore: /Users/ats/.yadr/git/gitignore
+    #~/.gitignore: /Users/ats/.dotfiles/git/gitignore.symlink
+    ~/.gnuplot_history: /Users/ats/Dropbox/dotfiles/gnuplot_history
+    ~/.hgignore: /Users/ats/Dropbox/dotfiles/hgignore
+    ~/.hgrc: /Users/ats/Dropbox/dotfiles/hgrc
+    ~/.inputrc: /Users/ats/.yadr/vimify/inputrc
+    ~/.irbrc: /Users/ats/.dotfiles//ruby/irbrc.symlink
+    #~/.irbrc: /Users/ats/Dropbox/dotfiles/irbrc
+    #~/.latexmkrc.bak: /Users/ats/Dropbox/dotfiles/latexmkrc.bak
+    ~/.local: /Users/ats/Dropbox/dotfiles/local
+    ~/.percol.d: /Users/ats/Dropbox/dotfiles/percol.d
+    ~/.pryrc: /Users/ats/.yadr/irb/pryrc
+    ~/.rdebugrc: /Users/ats/.yadr/ruby/rdebugrc
+    ~/.screenrc: /Users/ats/Dropbox/dotfiles/screenrc
+    ~/.ssh/config:
+        create: true
+        path: /Users/ats/.ssh/../Dropbox/dotfiles/config/ssh/config
+    ~/.ssh/known_hosts:
+        create: true
+        path: /Users/ats/.ssh/../Dropbox/dotfiles/config/ssh/known_hosts
+    ~/.tmux.conf: /Users/ats/.yadr/tmux/tmux.conf
+    #~/.tmux.conf: /Users/ats/Dropbox/dotfiles/tmux.conf
+    ~/.unescaped_colors.rb: /Users/ats/.yadr/irb/unescaped_colors.rb
+    ~/.vim: /Users/ats/.yadr/vim
+    ~/.vimrc: /Users/ats/.yadr/vimrc
+    #~/.vimrc: /Users/ats/.dotfiles//vim/vimrc.symlink
+    ~/.yadr: /Users/ats/local/src/github.com/ay65535/yadr
+    ~/.yankring-history_v2.txt: /Users/ats/Dropbox/dotfiles/yankring-history_v2.txt
+    ~/.zlogin: /Users/ats/.yadr/zsh/prezto/runcoms/zlogin
+    ~/.zlogout: /Users/ats/.yadr/zsh/prezto/runcoms/zlogout
+    ~/.zprezto: /Users/ats/.yadr/zsh/prezto
+    ~/.zpreztorc: /Users/ats/.yadr/zsh/prezto-override/zpreztorc
+    ~/.zprofile: /Users/ats/.yadr/zsh/prezto/runcoms/zprofile
+    ~/.zshenv: /Users/ats/.yadr/zsh/prezto/runcoms/zshenv
+    ~/.zshrc: /Users/ats/.yadr/zsh/prezto/runcoms/zshrc
+    #~/.zshrc: /Users/ats/.dotfiles/zsh/zshrc.symlink
+    ~/bin: /Users/ats/Dropbox/bin
+    ~/.local: /Users/ats/local
+    ~/Library/TexShop: /Users/ats/Library/../Dropbox/Library/TexShop
+    ~/Library/texmf: /Users/ats/Library/../Dropbox/Library/texmf
+    ~/Library/Application Support/BathyScaphe: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/BathyScaphe
+    ~/Library/Application Support/ClipMenu: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/ClipMenu
+    ~/Library/Application Support/Google Earth: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Google Earth
+    ~/Library/Application Support/Microsoft: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Microsoft
+    ~/Library/Application Support/Mou: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Mou
+    ~/Library/Application Support/Pcsxr: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Pcsxr
+    ~/Library/Application Support/Skype: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Skype
+    ~/Library/Application Support/Snes9x: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Snes9x
+    ~/Library/Application Support/Sublime Text 2: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Sublime Text 2
+    ~/Library/Application Support/Sublime Text 3: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Sublime Text 3
+    ~/Library/Application Support/TeXShop: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/TeXShop
+    ~/Library/Application Support/Thousand: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Thousand
+    ~/Library/Application Support/Thunderbird: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Thunderbird
+    ~/Library/Application Support/V2C: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/V2C
+    ~/Library/Application Support/WallpapersHDLite: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/WallpapersHDLite
+    ~/Library/Application Support/Window Tidy: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Window Tidy
+    ~/Library/Application Support/YoruFukurou: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/YoruFukurou
+    ~/Library/Application Support/com.trankynam.XtraFinder: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/com.trankynam.XtraFinder
+    #~/Library/QuickLook/QLStephen.qlgenerator: /opt/homebrew-cask/Caskroom/qlstephen/latest/QLStephen.qlgenerator
+    #~/Library/QuickLook/QuickLookJSON.qlgenerator: /opt/homebrew-cask/Caskroom/quicklook-json/latest/QuickLookJSON.qlgenerator
+    #~/Library/QuickLook/ScriptQL.qlgenerator: /opt/homebrew-cask/Caskroom/scriptql/latest/ScriptQL.qlgenerator
+    ## examples
+    #~/.config/terminator:
+    #  create: true
+    #  path: config/terminator/
+    #~/.vim: vim/
+    #~/.vimrc: vimrc
+    #~/.zshrc:
+    #  force: true
+    #  path: zshrc
