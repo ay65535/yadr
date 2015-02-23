@@ -206,6 +206,9 @@ def install_term_theme
     return
   end
 
+  run %{ defaults read com.googlecode.iterm2 | grep Solarized >/dev/null }
+  return if $?.exitstatus == 0
+
   # Ask the user which theme he wants to install
   message = "Which theme would you like to apply to your iTerm2 profile?"
   color_scheme = ask message, iTerm_available_themes
