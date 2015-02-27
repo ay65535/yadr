@@ -286,6 +286,9 @@
 [ghq "http://protobuf.googlecode.com/svn/"]
   vcs = svn
 
+[ghq "http://sub-www.ubi.cs.ritsumei.ac.jp/svn/users/sacchin/"]
+  vcs = subversion
+
 [grep]
   lineNumber = true
 

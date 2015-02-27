@@ -118,6 +118,7 @@
     ~/Library/Application Support/YoruFukurou: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/YoruFukurou
     ~/Library/Application Support/com.trankynam.XtraFinder: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/com.trankynam.XtraFinder
     ~/Library/iTunes/Scripts: /Users/ats/Dropbox/Library/iTunes/Scripts
+    ~/Library/Script Libraries: /Users/ats/Dropbox/Library/Script Libraries
     #~/Library/iTunes/Scripts: /Users/ats/Library/../../Dropbox/Library/iTunes/Scripts
     #~/Library/QuickLook/QLStephen.qlgenerator: /opt/homebrew-cask/Caskroom/qlstephen/latest/QLStephen.qlgenerator
     #~/Library/QuickLook/QuickLookJSON.qlgenerator: /opt/homebrew-cask/Caskroom/quicklook-json/latest/QuickLookJSON.qlgenerator
