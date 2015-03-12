@@ -9,8 +9,8 @@
   - chmod 700 ~/.ssh
   - chmod 600 ~/.ssh/authorized_keys
   - chmod 600 ~/.ssh/config
-  -
-    command: sudo tlmgr update --self --all
+  - # tlmgr update
+    command: test "$(date +%d)" -gt "$(ag tlmgr /var/log/system.log | tail -1 | cut -d ' ' -f 2)" && sudo tlmgr update --self --all || true
     stdin: true
     stdout: true
     stderr: true
@@ -28,8 +28,12 @@
     command: if which update_rubygems >/dev/null; then update_rubygems; else gem update --system; fi && gem update && gem clean
     stdout: true
     stderr: true
-  - # python
-    command: if which pip-review >/dev/null; then pip-review --auto; else pip install -U && pip list | cut -d ' ' -f 1 | xargs -t -I% pip install -U % ; fi && print_cmd pip3 install -U ; pip3 list | cut -d ' ' -f 1 | xargs -t -I% pip3 install -U %
+  - # python(2.7.x) pip install
+    command: pip install -r $CLOUD_CONFIG_HOME/pip/requirements-default.txt
+    stdout: true
+    stderr: true
+  - # python update
+    command: if which pip-review >/dev/null; then pip-review --auto; else pip list | cut -d ' ' -f 1 | xargs -t -I% pip install -U % ; fi && pip3 list | cut -d ' ' -f 1 | xargs -t -I% pip3 install -U %
     stdout: true
     stderr: true
   #- [mkdir -p ~/downloads, Creating downloads directory]
@@ -68,7 +72,7 @@
     ~/.irbrc: /Users/ats/.dotfiles//ruby/irbrc.symlink
     #~/.irbrc: /Users/ats/Dropbox/dotfiles/irbrc
     #~/.latexmkrc.bak: /Users/ats/Dropbox/dotfiles/latexmkrc.bak
-    ~/.local: /Users/ats/Dropbox/dotfiles/local
+    #~/.local: /Users/ats/Dropbox/dotfiles/local
     ~/.percol.d: /Users/ats/Dropbox/dotfiles/percol.d
     ~/.pryrc: /Users/ats/.yadr/irb/pryrc
     ~/.rdebugrc: /Users/ats/.yadr/ruby/rdebugrc
