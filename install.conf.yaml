@@ -97,12 +97,14 @@
     ~/.zpreztorc: /Users/ats/.yadr/zsh/prezto-override/zpreztorc
     ~/.zprofile: /Users/ats/.yadr/zsh/prezto/runcoms/zprofile
     ~/.zshenv: /Users/ats/.yadr/zsh/prezto/runcoms/zshenv
-    ~/.zshrc: /Users/ats/.yadr/zsh/prezto/runcoms/zshrc
-    #~/.zshrc: /Users/ats/.dotfiles/zsh/zshrc.symlink
-    ~/bin: /Users/ats/Dropbox/bin
-    ~/.local: /Users/ats/local
-    ~/Library/TexShop: /Users/ats/Library/../Dropbox/Library/TexShop
-    ~/Library/texmf: /Users/ats/Library/../Dropbox/Library/texmf
+    ~/.zshrc:
+        force: true
+        path: /Users/ats/.yadr/zsh/prezto/runcoms/zshrc
+    #  path: /Users/ats/.dotfiles/zsh/zshrc.symlink
+    ~/bin: ~/Dropbox/bin/
+    ~/.local: $HOME/local/
+    ~/Library/TexShop: /Users/ats/Library/../Dropbox/Library/TexShop/
+    ~/Library/texmf: ${HOME}/Dropbox/Library/texmf/
     ~/Library/Application Support/BathyScaphe: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/BathyScaphe
     ~/Library/Application Support/ClipMenu: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/ClipMenu
     ~/Library/Application Support/Google Earth: /Users/ats/Library/Application Support/../../Dropbox/Library/Application Support/Google Earth
@@ -134,6 +136,3 @@
     #  path: config/terminator/
     #~/.vim: vim/
     #~/.vimrc: vimrc
-    #~/.zshrc:
-    #  force: true
-    #  path: zshrc
