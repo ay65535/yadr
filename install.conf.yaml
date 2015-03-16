@@ -1,4 +1,4 @@
-- clean: ['~']
+- clean: ['~', '~/.ssh', '~/bin', '~/Library', '~/Library/Application Support']
 
 - shell:
   #- [git submodule update --init --recursive, Installing submodules]
@@ -6,34 +6,39 @@
   - mkdir -p ~/.cache/vim
   - mkdir -p ~/local/share
   - mkdir -p ~/local/src
+  - test ! -e ~/.ssh && mkdir ~/.ssh || true
+  - gln -srb ~/Dropbox/dotfiles/config/ssh/config ~/.ssh/config || true
+  - gln -srb ~/Dropbox/dotfiles/config/ssh/known_hosts ~/.ssh/known_hosts || true
   - chmod 700 ~/.ssh
   - chmod 600 ~/.ssh/authorized_keys
   - chmod 600 ~/.ssh/config
   - # tlmgr update
-    command: test "$(date +%d)" -gt "$(ag tlmgr /var/log/system.log | tail -1 | cut -d ' ' -f 2)" && sudo tlmgr update --self --all || true
+    command: ~/Dropbox/bin/do_cmd_for_outdated.sh -f /usr/local/texlive/2014basic/tlpkg sudo tlmgr update --self --all
     stdin: true
     stdout: true
     stderr: true
+  - gln -srbn ~/local/src/github.com/ay65535/yadr ~/.yadr || true
   -
-    command: pushd ~/.yadr && rake update && popd
+    command: gln -srbn ~/.yadr/zsh/prezto/runcoms/zlogin ~/.yadr/zsh/prezto/runcoms/zlogout ~/.yadr/zsh/prezto/runcoms/zlogin ~/.yadr/zsh/prezto/runcoms/zprofile ~/.yadr/zsh/prezto/runcoms/zshenv ~/.yadr/zsh/prezto/runcoms/zshrc -t ~ || true
     stdin: true
     stdout: true
     stderr: true
-  - sed -i '' -e '/^for config_file .*config_file$/d' ~/.yadr/zsh/prezto/runcoms/zshrc
+  - # rake update
+    command: test -d ~/.yadr && pushd ~/.yadr && ~/Dropbox/bin/do_cmd_for_outdated.sh -f /Users/ats/local/src/github.com/ay65535/yadr/vim/bundle/vundle/doc/tags rake update && popd
+    stdin: true
+    stdout: true
+    stderr: true
+  - test -d ~/.yadr && sed -i '' -e '/^for config_file .*config_file$/d' ~/.yadr/zsh/prezto/runcoms/zshrc
   -
-    command: brew upgrade && brew cleanup && brew doctor || true
+    command: if [[ "$(~/Dropbox/bin/do_cmd_for_outdated.sh -f /usr/local/.git brew upgrade)" != "up-to-date" ]]; then brew cleanup && brew doctor; fi
     stdout: true
     stderr: true
-  - # rubyはシステムのを使うなら sudo必要，rbenvのならいらない
-    command: if which update_rubygems >/dev/null; then update_rubygems; else gem update --system; fi && gem update && gem clean
-    stdout: true
-    stderr: true
-  - # python(2.7.x) pip install
-    command: pip install -r $CLOUD_CONFIG_HOME/pip/requirements-default.txt
+  -
+    command: ~/Dropbox/bin/do_cmd_for_outdated.sh -f ~/.gem/specs/api.rubygems.org%80/specs.4.8 ~/Dropbox/bin/update_rubygems.sh
     stdout: true
     stderr: true
   - # python update
-    command: if which pip-review >/dev/null; then pip-review --auto; else pip list | cut -d ' ' -f 1 | xargs -t -I% pip install -U % ; fi && pip3 list | cut -d ' ' -f 1 | xargs -t -I% pip3 install -U %
+    command: ~/Dropbox/bin/do_cmd_for_outdated.sh -f ~/Library/Logs/pip/debug.log ~/Dropbox/bin/update_pythoneggs.sh
     stdout: true
     stderr: true
   #- [mkdir -p ~/downloads, Creating downloads directory]
@@ -46,7 +51,9 @@
   #  stderr: true
 
 - link:
-    ~/.aprc: ../../../../../.yadr/irb/aprc
+    # ~/.aprc:
+    #     force: true
+    #     path: ../../../../../.yadr/irb/aprc
     #~/.atom: ../../../../../.dotfiles/atom.symlink
     ~/.bash_logout: ../../../../../Dropbox/dotfiles/bash_logout
     ~/.bash_profile: ../../../../../Dropbox/dotfiles/profile
@@ -55,53 +62,91 @@
         force: true
         path: ../../../../../Dropbox/dotfiles/brew_api_token
     ~/.config: ../../../../../Dropbox/dotfiles/config
-    ~/.ctags: ../../../../../.yadr/ctags/ctags
-    ~/.editrc: ../../../../../.yadr/vimify/editrc
+    # ~/.ctags:
+    #     force: true
+    #     path: ../../../../../.yadr/ctags/ctags
+    # ~/.editrc:
+    #     force: true
+    #     path: ../../../../../.yadr/vimify/editrc
     #~/.editrc: ../../../../../Dropbox/dotfiles/editrc
     ~/.emacs.d: ../../../../../Dropbox/dotfiles/emacs.d/
     ~/.emacs.el: ../../../../../Dropbox/dotfiles/emacs.el
-    ~/.escaped_colors.rb: ../../../../../.yadr/irb/escaped_colors.rb
-    ~/.gemrc: ../../../../../.yadr/ruby/gemrc
+    # ~/.escaped_colors.rb:
+    #     force: true
+    #     path: ../../../../../.yadr/irb/escaped_colors.rb
+    # ~/.gemrc:
+    #     force: true
+    #     path: ../../../../../.yadr/ruby/gemrc
     #~/.gemrc: ../../../../../.dotfiles//ruby/gemrc.symlink
-    ~/.gitconfig: ../../../../../.yadr/git/gitconfig
-    #~/.gitconfig: ../../../../../.dotfiles//git/gitconfig.symlink
-    ~/.gitignore: ../../../../../.yadr/git/gitignore
+    # ~/.gitconfig:
+    #     force: true
+    #     path: ../../../../../.yadr/git/gitconfig
+    # #~/.gitconfig: ../../../../../.dotfiles//git/gitconfig.symlink
+    # ~/.gitignore:
+    #     force: true
+    #     path: ../../../../../.yadr/git/gitignore
     #~/.gitignore: ../../../../../.dotfiles/git/gitignore.symlink
     ~/.gnuplot_history: ../../../../../Dropbox/dotfiles/gnuplot_history
     ~/.hgignore: ../../../../../Dropbox/dotfiles/hgignore
     ~/.hgrc: ../../../../../Dropbox/dotfiles/hgrc
-    ~/.inputrc: ../../../../../.yadr/vimify/inputrc
+    # ~/.inputrc:
+    #     force: true
+    #     path: ../../../../../.yadr/vimify/inputrc
     #~/.irbrc: ../../../../../.dotfiles/ruby/irbrc.symlink
     ~/.irbrc: ../../../../../Dropbox/dotfiles/irbrc
     #~/.latexmkrc.bak: ../../../../../Dropbox/dotfiles/latexmkrc.bak
     #~/.local: ../../../../../Dropbox/dotfiles/local
     ~/.percol.d: ../../../../../Dropbox/dotfiles/percol.d/
-    ~/.pryrc: ../../../../../.yadr/irb/pryrc
-    ~/.rdebugrc: ../../../../../.yadr/ruby/rdebugrc
+    # ~/.pryrc:
+    #     force: true
+    #     path: ../../../../../.yadr/irb/pryrc
+    # ~/.rdebugrc:
+    #     force: true
+    #     path: ../../../../../.yadr/ruby/rdebugrc
     ~/.screenrc: ../../../../../Dropbox/dotfiles/screenrc
-    ~/.ssh/config:
-        create: true
-        path: ../../../../../.ssh/../Dropbox/dotfiles/config/ssh/config
-    ~/.ssh/known_hosts:
-        create: true
-        path: ../../../../../.ssh/../Dropbox/dotfiles/config/ssh/known_hosts
-    ~/.tmux.conf: ../../../../../.yadr/tmux/tmux.conf
+    # ~/.ssh/config:
+    #     create: true
+    #     path: ../../../../../.ssh/../Dropbox/dotfiles/config/ssh/config
+    # ~/.ssh/known_hosts:
+    #     create: true
+    #     path: ../../../../../.ssh/../Dropbox/dotfiles/config/ssh/known_hosts
+    # ~/.tmux.conf:
+    #     force: true
+    #     path: ../../../../../.yadr/tmux/tmux.conf
     #~/.tmux.conf: ../../../../../Dropbox/dotfiles/tmux.conf
-    ~/.unescaped_colors.rb: ../../../../../.yadr/irb/unescaped_colors.rb
-    ~/.vim: ../../../../../.yadr/vim/
-    ~/.vimrc: ../../../../../.yadr/vimrc
+    # ~/.unescaped_colors.rb:
+    #     force: true
+    #     path: ../../../../../.yadr/irb/unescaped_colors.rb
+    # ~/.vim:
+    #     force: true
+    #     path: ../../../../../.yadr/vim/
+    # ~/.vimrc:
+    #     force: true
+    #     path: ../../../../../.yadr/vimrc
     #~/.vimrc: ../../../../../.dotfiles//vim/vimrc.symlink
-    ~/.yadr: ../../../../../local/src/github.com/ay65535/yadr/
+    #~/.yadr: ../../../../../local/src/github.com/ay65535/yadr/
     ~/.yankring-history_v2.txt: ../../../../../Dropbox/dotfiles/yankring-history_v2.txt
-    ~/.zlogin: ../../../../../.yadr/zsh/prezto/runcoms/zlogin
-    ~/.zlogout: ../../../../../.yadr/zsh/prezto/runcoms/zlogout
-    ~/.zprezto: ../../../../../.yadr/zsh/prezto/
-    ~/.zpreztorc: ../../../../../.yadr/zsh/prezto-override/zpreztorc
-    ~/.zprofile: ../../../../../.yadr/zsh/prezto/runcoms/zprofile
-    ~/.zshenv: ../../../../../.yadr/zsh/prezto/runcoms/zshenv
-    ~/.zshrc:
-        force: true
-        path: ../../../../../.yadr/zsh/prezto/runcoms/zshrc
+    # ~/.zlogin:
+    #     force: true
+    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zlogin
+    # ~/.zlogout:
+    #     force: true
+    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zlogout
+    # ~/.zprezto:
+    #     force: true
+    #     path: ../../../../../.yadr/zsh/prezto/
+    # ~/.zpreztorc:
+    #     force: true
+    #     path: ../../../../../.yadr/zsh/prezto-override/zpreztorc
+    # ~/.zprofile:
+    #     force: true
+    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zprofile
+    # ~/.zshenv:
+    #     force: true
+    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zshenv
+    # ~/.zshrc:
+    #     force: true
+    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zshrc
     #  path: ../../../../../.dotfiles/zsh/zshrc.symlink
     ~/bin: ../../../../../Dropbox/bin/
     ~/.local: ../../../../../local/
