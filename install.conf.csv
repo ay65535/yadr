@@ -14,13 +14,6 @@ Dropbox/dotfiles/screenrc,~/.screenrc
 ../Dropbox/dotfiles/config/ssh/known_hosts,~/.ssh/known_hosts
 local/src/github.com/ay65535/yadr,~/.yadr
 Dropbox/dotfiles/yankring-history_v2.txt,~/.yankring-history_v2.txt
-.yadr/zsh/prezto/runcoms/zlogin,~/.zlogin
-.yadr/zsh/prezto/runcoms/zlogout,~/.zlogout
-.yadr/zsh/prezto,~/.zprezto
-.yadr/zsh/prezto-override/zpreztorc,~/.zpreztorc
-.yadr/zsh/prezto/runcoms/zprofile,~/.zprofile
-.yadr/zsh/prezto/runcoms/zshenv,~/.zshenv
-.yadr/zsh/prezto/runcoms/zshrc,~/.zshrc
 Dropbox/bin,~/bin
 local,~/.local
 ../Dropbox/Library/TexShop,~/Library/TexShop

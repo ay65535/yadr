@@ -19,7 +19,7 @@
     stderr: true
   - gln -srbn ~/local/src/github.com/ay65535/yadr ~/.yadr || true
   -
-    command: zsh -c 'setopt EXTENDED_GLOB; for i in ~/.yadr/zsh/prezto/runcoms/^(README.md|zpreztorc)(.N) ~/.yadr/zsh/prezto-override/zpreztorc; do gln -sv "$i" ".${i:t}"; done' || true
+    command: zsh -c 'cd; setopt EXTENDED_GLOB; for i in ~/.yadr/zsh/prezto/runcoms/^(README.md|zpreztorc)(.N) ~/.yadr/zsh/prezto-override/zpreztorc; do ls -L "$i" || gln -sv "$i" ".${i:t}"; done'
     stdin: true
     stdout: true
     stderr: true
