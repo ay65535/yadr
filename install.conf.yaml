@@ -19,7 +19,7 @@
     stderr: true
   - gln -srbn ~/local/src/github.com/ay65535/yadr ~/.yadr || true
   -
-    command: gln -srbn ~/.yadr/zsh/prezto/runcoms/zlogin ~/.yadr/zsh/prezto/runcoms/zlogout ~/.yadr/zsh/prezto/runcoms/zlogin ~/.yadr/zsh/prezto/runcoms/zprofile ~/.yadr/zsh/prezto/runcoms/zshenv ~/.yadr/zsh/prezto/runcoms/zshrc -t ~ || true
+    command: zsh -c 'setopt EXTENDED_GLOB; for i in ~/.yadr/zsh/prezto/runcoms/^(README.md|zpreztorc)(.N) ~/.yadr/zsh/prezto-override/zpreztorc; do gln -sv "$i" ".${i:t}"; done' || true
     stdin: true
     stdout: true
     stderr: true
@@ -49,140 +49,146 @@
   #-
   #  command: read fail
   #  stderr: true
+  - # - link: の高機能バージョン？
+    command: ./link_from_conf.sh
+    stdin: true
+    stdout: true
+    stderr: true
 
-- link:
-    # ~/.aprc:
-    #     force: true
-    #     path: ../../../../../.yadr/irb/aprc
-    #~/.atom: ../../../../../.dotfiles/atom.symlink
-    ~/.bash_logout: ../../../../../Dropbox/dotfiles/bash_logout
-    ~/.bash_profile: ../../../../../Dropbox/dotfiles/profile
-    ~/.bashrc: ../../../../../Dropbox/dotfiles/bashrc
-    ~/.brew_api_token:
-        force: true
-        path: ../../../../../Dropbox/dotfiles/brew_api_token
-    ~/.config: ../../../../../Dropbox/dotfiles/config
-    # ~/.ctags:
-    #     force: true
-    #     path: ../../../../../.yadr/ctags/ctags
-    # ~/.editrc:
-    #     force: true
-    #     path: ../../../../../.yadr/vimify/editrc
-    #~/.editrc: ../../../../../Dropbox/dotfiles/editrc
-    ~/.emacs.d: ../../../../../Dropbox/dotfiles/emacs.d/
-    ~/.emacs.el: ../../../../../Dropbox/dotfiles/emacs.el
-    # ~/.escaped_colors.rb:
-    #     force: true
-    #     path: ../../../../../.yadr/irb/escaped_colors.rb
-    # ~/.gemrc:
-    #     force: true
-    #     path: ../../../../../.yadr/ruby/gemrc
-    #~/.gemrc: ../../../../../.dotfiles//ruby/gemrc.symlink
-    # ~/.gitconfig:
-    #     force: true
-    #     path: ../../../../../.yadr/git/gitconfig
-    # #~/.gitconfig: ../../../../../.dotfiles//git/gitconfig.symlink
-    # ~/.gitignore:
-    #     force: true
-    #     path: ../../../../../.yadr/git/gitignore
-    #~/.gitignore: ../../../../../.dotfiles/git/gitignore.symlink
-    ~/.gnuplot_history: ../../../../../Dropbox/dotfiles/gnuplot_history
-    ~/.hgignore: ../../../../../Dropbox/dotfiles/hgignore
-    ~/.hgrc: ../../../../../Dropbox/dotfiles/hgrc
-    # ~/.inputrc:
-    #     force: true
-    #     path: ../../../../../.yadr/vimify/inputrc
-    #~/.irbrc: ../../../../../.dotfiles/ruby/irbrc.symlink
-    ~/.irbrc: ../../../../../Dropbox/dotfiles/irbrc
-    #~/.latexmkrc.bak: ../../../../../Dropbox/dotfiles/latexmkrc.bak
-    #~/.local: ../../../../../Dropbox/dotfiles/local
-    ~/.percol.d: ../../../../../Dropbox/dotfiles/percol.d/
-    # ~/.pryrc:
-    #     force: true
-    #     path: ../../../../../.yadr/irb/pryrc
-    # ~/.rdebugrc:
-    #     force: true
-    #     path: ../../../../../.yadr/ruby/rdebugrc
-    ~/.screenrc: ../../../../../Dropbox/dotfiles/screenrc
-    # ~/.ssh/config:
-    #     create: true
-    #     path: ../../../../../.ssh/../Dropbox/dotfiles/config/ssh/config
-    # ~/.ssh/known_hosts:
-    #     create: true
-    #     path: ../../../../../.ssh/../Dropbox/dotfiles/config/ssh/known_hosts
-    # ~/.tmux.conf:
-    #     force: true
-    #     path: ../../../../../.yadr/tmux/tmux.conf
-    #~/.tmux.conf: ../../../../../Dropbox/dotfiles/tmux.conf
-    # ~/.unescaped_colors.rb:
-    #     force: true
-    #     path: ../../../../../.yadr/irb/unescaped_colors.rb
-    # ~/.vim:
-    #     force: true
-    #     path: ../../../../../.yadr/vim/
-    # ~/.vimrc:
-    #     force: true
-    #     path: ../../../../../.yadr/vimrc
-    #~/.vimrc: ../../../../../.dotfiles//vim/vimrc.symlink
-    #~/.yadr: ../../../../../local/src/github.com/ay65535/yadr/
-    ~/.yankring-history_v2.txt: ../../../../../Dropbox/dotfiles/yankring-history_v2.txt
-    # ~/.zlogin:
-    #     force: true
-    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zlogin
-    # ~/.zlogout:
-    #     force: true
-    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zlogout
-    # ~/.zprezto:
-    #     force: true
-    #     path: ../../../../../.yadr/zsh/prezto/
-    # ~/.zpreztorc:
-    #     force: true
-    #     path: ../../../../../.yadr/zsh/prezto-override/zpreztorc
-    # ~/.zprofile:
-    #     force: true
-    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zprofile
-    # ~/.zshenv:
-    #     force: true
-    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zshenv
-    # ~/.zshrc:
-    #     force: true
-    #     path: ../../../../../.yadr/zsh/prezto/runcoms/zshrc
-    #  path: ../../../../../.dotfiles/zsh/zshrc.symlink
-    ~/bin: ../../../../../Dropbox/bin/
-    ~/.local: ../../../../../local/
-    ~/Library/TexShop: ../../../../../Dropbox/Library/TexShop/
-    ~/Library/texmf:
-        force: true
-        path: ../../../../../Dropbox/Library/texmf/
-    ~/Library/Application Support/BathyScaphe:
-        force: true
-        path: ../../../../../Dropbox/Library/Application Support/BathyScaphe/
-    ~/Library/Application Support/ClipMenu: ../../../../../Dropbox/Library/Application Support/ClipMenu/
-    ~/Library/Application Support/Google Earth: ../../../../../Dropbox/Library/Application Support/Google Earth/
-    ~/Library/Application Support/Microsoft: ../../../../../Dropbox/Library/Application Support/Microsoft/
-    ~/Library/Application Support/Mou: ../../../../../Dropbox/Library/Application Support/Mou/
-    ~/Library/Application Support/Pcsxr: ../../../../../Dropbox/Library/Application Support/Pcsxr/
-    ~/Library/Application Support/Skype: ../../../../../Dropbox/Library/Application Support/Skype/
-    ~/Library/Application Support/Snes9x: ../../../../../Dropbox/Library/Application Support/Snes9x/
-    ~/Library/Application Support/Sublime Text 2: ../../../../../Dropbox/Library/Application Support/Sublime Text 2/
-    ~/Library/Application Support/Sublime Text 3: ../../../../../Dropbox/Library/Application Support/Sublime Text 3/
-    ~/Library/Application Support/TeXShop: ../../../../../Dropbox/Library/Application Support/TeXShop/
-    ~/Library/Application Support/Thousand: ../../../../../Dropbox/Library/Application Support/Thousand/
-    ~/Library/Application Support/Thunderbird: ../../../../../Dropbox/Library/Application Support/Thunderbird/
-    ~/Library/Application Support/V2C: ../../../../../Dropbox/Library/Application Support/V2C/
-    ~/Library/Application Support/WallpapersHDLite: ../../../../../Dropbox/Library/Application Support/WallpapersHDLite/
-    ~/Library/Application Support/Window Tidy: ../../../../../Dropbox/Library/Application Support/Window Tidy/
-    ~/Library/Application Support/YoruFukurou: ../../../../../Dropbox/Library/Application Support/YoruFukurou/
-    ~/Library/Application Support/com.trankynam.XtraFinder: ../../../../../Dropbox/Library/Application Support/com.trankynam.XtraFinder/
-    ~/Library/iTunes/Scripts: ../../../../../Dropbox/Library/iTunes/Scripts/
-    ~/Library/Scripts: ../../../../../Dropbox/Library/Scripts/
-    ~/Library/Script Libraries: ../../../../../Dropbox/Library/Script Libraries/
-    #~/Library/QuickLook/QLStephen.qlgenerator: /opt/homebrew-cask/Caskroom/qlstephen/latest/QLStephen.qlgenerator
-    #~/Library/QuickLook/QuickLookJSON.qlgenerator: /opt/homebrew-cask/Caskroom/quicklook-json/latest/QuickLookJSON.qlgenerator
-    #~/Library/QuickLook/ScriptQL.qlgenerator: /opt/homebrew-cask/Caskroom/scriptql/latest/ScriptQL.qlgenerator
-    ## examples
-    #~/.config/terminator:
-    #  create: true
-    #  path: config/terminator/
-    #~/.vim: vim/
-    #~/.vimrc: vimrc
+
+# - link:
+#     # ~/.aprc:
+#     #     force: true
+#     #     path: ../../../../../.yadr/irb/aprc
+#     #~/.atom: ../../../../../.dotfiles/atom.symlink
+#     ~/.bash_logout: ../../../../../Dropbox/dotfiles/bash_logout
+#     ~/.bash_profile: ../../../../../Dropbox/dotfiles/profile
+#     ~/.bashrc: ../../../../../Dropbox/dotfiles/bashrc
+#     ~/.brew_api_token:
+#         force: true
+#         path: ../../../../../Dropbox/dotfiles/brew_api_token
+#     ~/.config: ../../../../../Dropbox/dotfiles/config
+#     # ~/.ctags:
+#     #     force: true
+#     #     path: ../../../../../.yadr/ctags/ctags
+#     # ~/.editrc:
+#     #     force: true
+#     #     path: ../../../../../.yadr/vimify/editrc
+#     #~/.editrc: ../../../../../Dropbox/dotfiles/editrc
+#     ~/.emacs.d: ../../../../../Dropbox/dotfiles/emacs.d/
+#     ~/.emacs.el: ../../../../../Dropbox/dotfiles/emacs.el
+#     # ~/.escaped_colors.rb:
+#     #     force: true
+#     #     path: ../../../../../.yadr/irb/escaped_colors.rb
+#     # ~/.gemrc:
+#     #     force: true
+#     #     path: ../../../../../.yadr/ruby/gemrc
+#     #~/.gemrc: ../../../../../.dotfiles//ruby/gemrc.symlink
+#     # ~/.gitconfig:
+#     #     force: true
+#     #     path: ../../../../../.yadr/git/gitconfig
+#     # #~/.gitconfig: ../../../../../.dotfiles//git/gitconfig.symlink
+#     # ~/.gitignore:
+#     #     force: true
+#     #     path: ../../../../../.yadr/git/gitignore
+#     #~/.gitignore: ../../../../../.dotfiles/git/gitignore.symlink
+#     ~/.gnuplot_history: ../../../../../Dropbox/dotfiles/gnuplot_history
+#     ~/.hgignore: ../../../../../Dropbox/dotfiles/hgignore
+#     ~/.hgrc: ../../../../../Dropbox/dotfiles/hgrc
+#     # ~/.inputrc:
+#     #     force: true
+#     #     path: ../../../../../.yadr/vimify/inputrc
+#     #~/.irbrc: ../../../../../.dotfiles/ruby/irbrc.symlink
+#     ~/.irbrc: ../../../../../Dropbox/dotfiles/irbrc
+#     #~/.latexmkrc.bak: ../../../../../Dropbox/dotfiles/latexmkrc.bak
+#     #~/.local: ../../../../../Dropbox/dotfiles/local
+#     ~/.percol.d: ../../../../../Dropbox/dotfiles/percol.d/
+#     # ~/.pryrc:
+#     #     force: true
+#     #     path: ../../../../../.yadr/irb/pryrc
+#     # ~/.rdebugrc:
+#     #     force: true
+#     #     path: ../../../../../.yadr/ruby/rdebugrc
+#     ~/.screenrc: ../../../../../Dropbox/dotfiles/screenrc
+#     # ~/.ssh/config:
+#     #     create: true
+#     #     path: ../../../../../.ssh/../Dropbox/dotfiles/config/ssh/config
+#     # ~/.ssh/known_hosts:
+#     #     create: true
+#     #     path: ../../../../../.ssh/../Dropbox/dotfiles/config/ssh/known_hosts
+#     # ~/.tmux.conf:
+#     #     force: true
+#     #     path: ../../../../../.yadr/tmux/tmux.conf
+#     #~/.tmux.conf: ../../../../../Dropbox/dotfiles/tmux.conf
+#     # ~/.unescaped_colors.rb:
+#     #     force: true
+#     #     path: ../../../../../.yadr/irb/unescaped_colors.rb
+#     # ~/.vim:
+#     #     force: true
+#     #     path: ../../../../../.yadr/vim/
+#     # ~/.vimrc:
+#     #     force: true
+#     #     path: ../../../../../.yadr/vimrc
+#     #~/.vimrc: ../../../../../.dotfiles//vim/vimrc.symlink
+#     #~/.yadr: ../../../../../local/src/github.com/ay65535/yadr/
+#     ~/.yankring-history_v2.txt: ../../../../../Dropbox/dotfiles/yankring-history_v2.txt
+#     # ~/.zlogin:
+#     #     force: true
+#     #     path: ../../../../../.yadr/zsh/prezto/runcoms/zlogin
+#     # ~/.zlogout:
+#     #     force: true
+#     #     path: ../../../../../.yadr/zsh/prezto/runcoms/zlogout
+#     # ~/.zprezto:
+#     #     force: true
+#     #     path: ../../../../../.yadr/zsh/prezto/
+#     # ~/.zpreztorc:
+#     #     force: true
+#     #     path: ../../../../../.yadr/zsh/prezto-override/zpreztorc
+#     # ~/.zprofile:
+#     #     force: true
+#     #     path: ../../../../../.yadr/zsh/prezto/runcoms/zprofile
+#     # ~/.zshenv:
+#     #     force: true
+#     #     path: ../../../../../.yadr/zsh/prezto/runcoms/zshenv
+#     # ~/.zshrc:
+#     #     force: true
+#     #     path: ../../../../../.yadr/zsh/prezto/runcoms/zshrc
+#     #  path: ../../../../../.dotfiles/zsh/zshrc.symlink
+#     ~/bin: ../../../../../Dropbox/bin/
+#     ~/.local: ../../../../../local/
+#     ~/Library/TexShop: ../../../../../Dropbox/Library/TexShop/
+#     ~/Library/texmf:
+#         force: true
+#         path: ../../../../../Dropbox/Library/texmf/
+#     ~/Library/Application Support/BathyScaphe:
+#         force: true
+#         path: ../../../../../Dropbox/Library/Application Support/BathyScaphe/
+#     ~/Library/Application Support/ClipMenu: ../../../../../Dropbox/Library/Application Support/ClipMenu/
+#     ~/Library/Application Support/Google Earth: ../../../../../Dropbox/Library/Application Support/Google Earth/
+#     ~/Library/Application Support/Microsoft: ../../../../../Dropbox/Library/Application Support/Microsoft/
+#     ~/Library/Application Support/Mou: ../../../../../Dropbox/Library/Application Support/Mou/
+#     ~/Library/Application Support/Pcsxr: ../../../../../Dropbox/Library/Application Support/Pcsxr/
+#     ~/Library/Application Support/Skype: ../../../../../Dropbox/Library/Application Support/Skype/
+#     ~/Library/Application Support/Snes9x: ../../../../../Dropbox/Library/Application Support/Snes9x/
+#     ~/Library/Application Support/Sublime Text 2: ../../../../../Dropbox/Library/Application Support/Sublime Text 2/
+#     ~/Library/Application Support/Sublime Text 3: ../../../../../Dropbox/Library/Application Support/Sublime Text 3/
+#     ~/Library/Application Support/TeXShop: ../../../../../Dropbox/Library/Application Support/TeXShop/
+#     ~/Library/Application Support/Thousand: ../../../../../Dropbox/Library/Application Support/Thousand/
+#     ~/Library/Application Support/Thunderbird: ../../../../../Dropbox/Library/Application Support/Thunderbird/
+#     ~/Library/Application Support/V2C: ../../../../../Dropbox/Library/Application Support/V2C/
+#     ~/Library/Application Support/WallpapersHDLite: ../../../../../Dropbox/Library/Application Support/WallpapersHDLite/
+#     ~/Library/Application Support/Window Tidy: ../../../../../Dropbox/Library/Application Support/Window Tidy/
+#     ~/Library/Application Support/YoruFukurou: ../../../../../Dropbox/Library/Application Support/YoruFukurou/
+#     ~/Library/Application Support/com.trankynam.XtraFinder: ../../../../../Dropbox/Library/Application Support/com.trankynam.XtraFinder/
+#     ~/Library/iTunes/Scripts: ../../../../../Dropbox/Library/iTunes/Scripts/
+#     ~/Library/Scripts: ../../../../../Dropbox/Library/Scripts/
+#     ~/Library/Script Libraries: ../../../../../Dropbox/Library/Script Libraries/
+#     #~/Library/QuickLook/QLStephen.qlgenerator: /opt/homebrew-cask/Caskroom/qlstephen/latest/QLStephen.qlgenerator
+#     #~/Library/QuickLook/QuickLookJSON.qlgenerator: /opt/homebrew-cask/Caskroom/quicklook-json/latest/QuickLookJSON.qlgenerator
+#     #~/Library/QuickLook/ScriptQL.qlgenerator: /opt/homebrew-cask/Caskroom/scriptql/latest/ScriptQL.qlgenerator
+#     ## examples
+#     #~/.config/terminator:
+#     #  create: true
+#     #  path: config/terminator/
+#     #~/.vim: vim/
+#     #~/.vimrc: vimrc

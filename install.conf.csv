@@ -1,0 +1,48 @@
+Dropbox/dotfiles/bash_logout,~/.bash_logout
+Dropbox/dotfiles/profile,~/.bash_profile
+Dropbox/dotfiles/bashrc,~/.bashrc
+Dropbox/dotfiles/brew_api_token,~/.brew_api_token
+Dropbox/dotfiles/config,~/.config
+Dropbox/dotfiles/emacs.d,~/.emacs.d
+Dropbox/dotfiles/emacs.el,~/.emacs.el
+Dropbox/dotfiles/gnuplot_history,~/.gnuplot_history
+Dropbox/dotfiles/hgignore,~/.hgignore
+Dropbox/dotfiles/hgrc,~/.hgrc
+Dropbox/dotfiles/percol.d,~/.percol.d
+Dropbox/dotfiles/screenrc,~/.screenrc
+../Dropbox/dotfiles/config/ssh/config,~/.ssh/config
+../Dropbox/dotfiles/config/ssh/known_hosts,~/.ssh/known_hosts
+local/src/github.com/ay65535/yadr,~/.yadr
+Dropbox/dotfiles/yankring-history_v2.txt,~/.yankring-history_v2.txt
+.yadr/zsh/prezto/runcoms/zlogin,~/.zlogin
+.yadr/zsh/prezto/runcoms/zlogout,~/.zlogout
+.yadr/zsh/prezto,~/.zprezto
+.yadr/zsh/prezto-override/zpreztorc,~/.zpreztorc
+.yadr/zsh/prezto/runcoms/zprofile,~/.zprofile
+.yadr/zsh/prezto/runcoms/zshenv,~/.zshenv
+.yadr/zsh/prezto/runcoms/zshrc,~/.zshrc
+Dropbox/bin,~/bin
+local,~/.local
+../Dropbox/Library/TexShop,~/Library/TexShop
+../Dropbox/Library/texmf,~/Library/texmf
+../../Dropbox/Library/Application Support/BathyScaphe,~/Library/Application Support/BathyScaphe
+../../Dropbox/Library/Application Support/ClipMenu,~/Library/Application Support/ClipMenu
+../../Dropbox/Library/Application Support/Google Earth,~/Library/Application Support/Google Earth
+../../Dropbox/Library/Application Support/Microsoft,~/Library/Application Support/Microsoft
+../../Dropbox/Library/Application Support/Mou,~/Library/Application Support/Mou
+../../Dropbox/Library/Application Support/Pcsxr,~/Library/Application Support/Pcsxr
+../../Dropbox/Library/Application Support/Skype,~/Library/Application Support/Skype
+../../Dropbox/Library/Application Support/Snes9x,~/Library/Application Support/Snes9x
+../../Dropbox/Library/Application Support/Sublime Text 2,~/Library/Application Support/Sublime Text 2
+../../Dropbox/Library/Application Support/Sublime Text 3,~/Library/Application Support/Sublime Text 3
+../../Dropbox/Library/Application Support/TeXShop,~/Library/Application Support/TeXShop
+../../Dropbox/Library/Application Support/Thousand,~/Library/Application Support/Thousand
+../../Dropbox/Library/Application Support/Thunderbird,~/Library/Application Support/Thunderbird
+../../Dropbox/Library/Application Support/V2C,~/Library/Application Support/V2C
+../../Dropbox/Library/Application Support/WallpapersHDLite,~/Library/Application Support/WallpapersHDLite
+../../Dropbox/Library/Application Support/Window Tidy,~/Library/Application Support/Window Tidy
+../../Dropbox/Library/Application Support/YoruFukurou,~/Library/Application Support/YoruFukurou
+../../Dropbox/Library/Application Support/com.trankynam.XtraFinder,~/Library/Application Support/com.trankynam.XtraFinder
+../../Dropbox/Library/iTunes/Scripts,~/Library/iTunes/Scripts
+../Dropbox/Library/Scripts,~/Library/Scripts
+../Dropbox/Library/Script Libraries,~/Library/Script Libraries
