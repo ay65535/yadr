@@ -37,9 +37,7 @@ zstyle ':prezto:load' pmodule \
   'archive' \
   'git' \
   'osx' \
-  'ruby' \
-  'python' \
-  'homebrew' \
+  'tmux' \
   'syntax-highlighting' \
   'ssh' \
   'prompt'
