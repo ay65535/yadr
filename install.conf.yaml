@@ -50,7 +50,7 @@
   #  command: read fail
   #  stderr: true
   - # - link: の高機能バージョン？
-    command: ./link_from_conf.sh
+    command: ./link_from_conf.sh < install.conf.csv
     stdin: true
     stdout: true
     stderr: true
