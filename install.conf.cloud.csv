@@ -2,6 +2,7 @@
 ../Dropbox/dotfiles/config/ssh/known_hosts,~/.ssh/known_hosts
 ~/.yadr/ctags/ctags,~/.ctags
 ~/.yadr/git/gitconfig,~/.gitconfig
+~/.yadr/git/gitconfig.linux,~/.gitconfig.os
 ~/.yadr/git/gitignore,~/.gitignore
 ~/.yadr/irb/aprc,~/.aprc
 ~/.yadr/irb/escaped_colors.rb,~/.escaped_colors.rb

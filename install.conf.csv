@@ -13,6 +13,7 @@ Dropbox/dotfiles/screenrc,~/.screenrc
 ../Dropbox/dotfiles/config/ssh/config,~/.ssh/config
 ../Dropbox/dotfiles/config/ssh/known_hosts,~/.ssh/known_hosts
 local/src/github.com/ay65535/yadr,~/.yadr
+.yadr/git/gitconfig.osx,~/.gitconfig.os
 Dropbox/dotfiles/yankring-history_v2.txt,~/.yankring-history_v2.txt
 Dropbox/bin,~/bin
 local,~/.local
