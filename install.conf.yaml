@@ -30,7 +30,7 @@
     stderr: true
   - test -d ~/.yadr && sed -i '' -e '/^for config_file .*config_file$/d' ~/.yadr/zsh/prezto/runcoms/zshrc
   -
-    command: if [[ "$(~/Dropbox/bin/do_cmd_for_outdated.sh -f /usr/local/.git brew upgrade)" != "up-to-date" ]]; then brew cleanup && brew doctor; fi
+    command: if [[ "$(~/Dropbox/bin/do_cmd_for_outdated.sh -f /usr/local/.git brew upgrade)" != "up-to-date" ]]; then brew cleanup && brew doctor || true; fi
     stdout: true
     stderr: true
   -

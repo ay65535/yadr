@@ -1,0 +1,67 @@
+# base settings
+## allow utf8
+set-window-option -g utf8 on
+## disable ESC delay
+if "echo $OSTYPE | grep -q darwin" "set -s escape-time 0"
+## enable clipboard on MacOS X
+## see. http://d.hatena.ne.jp/koseki2/20110816/TmuxCopy
+if "echo $OSTYPE | grep -q darwin" "set-option -g default-command 'reattach-to-user-namespace -l zsh'"
+
+# key mappings
+## vi binding
+set-window-option -g mode-keys vi # vi or emacs
+## set prefix (^T)
+unbind C-b
+set -g prefix ^T
+bind a send-prefix
+## last window (^t)
+unbind ^A
+bind ^t last-window
+## reload config (r)
+bind r source-file ~/.tmux.conf; display-message "Reload Config!!"
+
+# base index at 1
+set -g base-index 1
+if "echo $OSTYPE | grep -q darwin" "set -g pane-base-index 1"
+
+# color settings
+## enable 256 color
+set-option -g default-terminal "screen-256color"
+## status line
+set -g status-fg white
+set -g status-bg colour234
+## pane border
+if "echo $OSTYPE | grep -q darwin" "set -g pane-border-fg colour245"
+if "echo $OSTYPE | grep -q darwin" "set -g pane-active-border-fg colour39"
+
+# status line
+## reload every 1sec
+set -g status-interval 1
+## left
+set -g status-left-length 32
+set -g status-left '#[fg=colour244] #h [#S:#I.#P] |'
+## main
+if "echo $OSTYPE | grep -q darwin" "set -g window-status-format ' #I #W #F '"
+if "echo $OSTYPE | grep -q darwin" "set -g window-status-current-format '#[fg=white,bg=colour237] #I #W #F '"
+## right
+set -g status-right-length 150
+set -g status-right '#[fg=colour244]%Y/%m/%d(%a) %H:%M' #:%S '
+## message
+set -g message-attr bold
+set -g message-fg white
+set -g message-bg red
+
+# mouse settings
+set-option -g mouse-select-pane on
+#set-option -g mouse-resize-pane on # unknown option ?
+#set-option -g mode-mouse on # unkonwn option ?
+#set-option -g mouse-select-window on # unknown option ?
+
+# mouse settings 2
+set -g mode-mouse on
+set -g mouse-resize-pane on
+set -g mouse-select-pane on
+set -g mouse-select-window on
+
+# shell
+set-option -g default-shell /bin/zsh
