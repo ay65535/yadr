@@ -12,12 +12,12 @@
   - chmod 700 ~/.ssh
   - chmod 600 ~/.ssh/authorized_keys
   - chmod 600 ~/.ssh/config
-  - # tlmgr update
-    command: ~/Dropbox/bin/do_cmd_for_outdated.sh -f /usr/local/texlive/2014basic/tlpkg sudo tlmgr update --self --all
-    stdin: true
-    stdout: true
-    stderr: true
-  - gln -srbn ~/local/src/github.com/ay65535/yadr ~/.yadr || true
+    #- # tlmgr update
+    #- command: ~/Dropbox/bin/do_cmd_for_outdated.sh -f /usr/local/texlive/2014basic/tlpkg sudo tlmgr update --self --all
+    #- stdin: true
+    #- stdout: true
+    #- stderr: true
+  - gln -snr ~/local/src/github.com/ay65535/yadr ~/.yadr || true
   -
     command: zsh -c 'cd; setopt EXTENDED_GLOB; for i in ~/.yadr/zsh/prezto/runcoms/^(README.md|zpreztorc)(.N) ~/.yadr/zsh/prezto-override/zpreztorc; do ls -L "$i" || gln -sv "$i" ".${i:t}"; done'
     stdin: true
@@ -28,9 +28,13 @@
     stdin: true
     stdout: true
     stderr: true
+  - # remove unnecessary tmux conf
+    command: if [ $(ls -1 ~/.tmux.conf* | wc -l) = "2" ]; then case "$OSTYPE" in linux*) RMCONF=~/.tmux.conf ;; *) RMCONF=~/.tmux.conf.www ;; esac; rm -v $RMCONF; fi
+    stdout: true
+    stderr: true
   - test -d ~/.yadr && sed -i '' -e '/^for config_file .*config_file$/d' ~/.yadr/zsh/prezto/runcoms/zshrc
   -
-    command: if [[ "$(~/Dropbox/bin/do_cmd_for_outdated.sh -f /usr/local/.git brew upgrade)" != "up-to-date" ]]; then brew cleanup && brew doctor || true; fi
+    command: if [[ "$(brew upgrade --all)" != "up-to-date" ]]; then brew cleanup && brew doctor || true; fi
     stdout: true
     stderr: true
   -

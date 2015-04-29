@@ -10,7 +10,8 @@
 ~/.yadr/irb/unescaped_colors.rb,~/.unescaped_colors.rb
 ~/.yadr/ruby/gemrc,~/.gemrc
 ~/.yadr/ruby/rdebugrc,~/.rdebugrc
-~/.yadr/tmux/tmux.conf,~/.tmux.conf
+#~/.yadr/tmux/tmux.conf,~/.tmux.conf
+~/.yadr/tmux/tmux.conf.www,~/.tmux.conf
 ~/.yadr/vim,~/.vim
 ~/.yadr/vimify/editrc,~/.editrc
 ~/.yadr/vimify/inputrc,~/.inputrc
