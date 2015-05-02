@@ -66,6 +66,10 @@ set -g mouse-select-window on
 # shell
 set-option -g default-shell /bin/zsh
 
+# bind key for synchronizing panes
+# ( https://github.com/elasticdog/dotfiles/blob/master/tmux.conf )
+bind-key y set-window-option synchronize-panes
+
 # fix ssh agent when tmux is detached
 # ( http://stackoverflow.com/a/23187030 )
 setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
