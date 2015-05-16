@@ -1,7 +1,6 @@
 Dropbox/dotfiles/bash_logout,~/.bash_logout
 Dropbox/dotfiles/profile,~/.bash_profile
 Dropbox/dotfiles/bashrc,~/.bashrc
-Dropbox/dotfiles/brew_api_token,~/.brew_api_token
 Dropbox/dotfiles/config,~/.config
 Dropbox/dotfiles/emacs.d,~/.emacs.d
 Dropbox/dotfiles/emacs.el,~/.emacs.el
@@ -10,11 +9,12 @@ Dropbox/dotfiles/hgignore,~/.hgignore
 Dropbox/dotfiles/hgrc,~/.hgrc
 Dropbox/dotfiles/percol.d,~/.percol.d
 Dropbox/dotfiles/screenrc,~/.screenrc
+Dropbox/dotfiles.private/brew_api_token,~/.brew_api_token
 ../Dropbox/dotfiles/config/ssh/config,~/.ssh/config
 ../Dropbox/dotfiles/config/ssh/known_hosts,~/.ssh/known_hosts
 local/src/github.com/ay65535/yadr,~/.yadr
 .yadr/git/gitconfig.osx,~/.gitconfig.os
-~/.yadr/tmux/tmux.conf,~/.tmux.conf
+.yadr/tmux/tmux.conf,~/.tmux.conf
 Dropbox/dotfiles/yankring-history_v2.txt,~/.yankring-history_v2.txt
 Dropbox/bin,~/bin
 local,~/.local
