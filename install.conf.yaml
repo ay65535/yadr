@@ -8,7 +8,7 @@
   - mkdir -p ~/local/src
   - test ! -e ~/.ssh && mkdir ~/.ssh || true
   - gln -srb ~/Dropbox/dotfiles/config/ssh/config ~/.ssh/config || true
-  - gln -srb ~/Dropbox/dotfiles/config/ssh/known_hosts ~/.ssh/known_hosts || true
+  #- gln -srb ~/Dropbox/dotfiles/config/ssh/known_hosts ~/.ssh/known_hosts || true
   - chmod 700 ~/.ssh
   - chmod 600 ~/.ssh/authorized_keys
   - chmod 600 ~/.ssh/config
@@ -17,14 +17,14 @@
     #- stdin: true
     #- stdout: true
     #- stderr: true
-  - gln -snr ~/local/src/github.com/ay65535/yadr ~/.yadr || true
+  - gln -snfv local/src/github.com/ay65535/yadr ~/.yadr || true
   -
     command: zsh -c 'cd; setopt EXTENDED_GLOB; for i in ~/.yadr/zsh/prezto/runcoms/^(README.md|zpreztorc)(.N) ~/.yadr/zsh/prezto-override/zpreztorc; do ls -L "$i" || gln -sv "$i" ".${i:t}"; done'
     stdin: true
     stdout: true
     stderr: true
   - # rake update
-    command: test -d ~/.yadr && pushd ~/.yadr && ~/Dropbox/bin/do_cmd_for_outdated.sh -f /Users/ats/local/src/github.com/ay65535/yadr/vim/bundle/vundle/doc/tags rake update && popd
+    command: test -d ~/.yadr && pushd ~/.yadr >/dev/null && ~/Dropbox/bin/do_cmd_for_outdated.sh -f /Users/ats/local/src/github.com/ay65535/yadr/vim/bundle/vundle/doc/tags rake update && popd >/dev/null
     stdin: true
     stdout: true
     stderr: true

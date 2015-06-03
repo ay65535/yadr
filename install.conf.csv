@@ -11,10 +11,10 @@ Dropbox/dotfiles/percol.d,~/.percol.d
 Dropbox/dotfiles/screenrc,~/.screenrc
 Dropbox/dotfiles.private/brew_api_token,~/.brew_api_token
 ../Dropbox/dotfiles/config/ssh/config,~/.ssh/config
-../Dropbox/dotfiles/config/ssh/known_hosts,~/.ssh/known_hosts
+#../Dropbox/dotfiles/config/ssh/known_hosts,~/.ssh/known_hosts
 local/src/github.com/ay65535/yadr,~/.yadr
 .yadr/git/gitconfig.osx,~/.gitconfig.os
-.yadr/tmux/tmux.conf,~/.tmux.conf
+${HOME}/.yadr/tmux/tmux.conf,~/.tmux.conf
 Dropbox/dotfiles/yankring-history_v2.txt,~/.yankring-history_v2.txt
 Dropbox/bin,~/bin
 local,~/.local
