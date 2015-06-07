@@ -10,6 +10,7 @@ Dropbox/dotfiles/hgrc,~/.hgrc
 Dropbox/dotfiles/percol.d,~/.percol.d
 Dropbox/dotfiles/screenrc,~/.screenrc
 Dropbox/dotfiles.private/brew_api_token,~/.brew_api_token
+Dropbox/dotfiles.private/secrets,~/.secrets
 ../Dropbox/dotfiles/config/ssh/config,~/.ssh/config
 #../Dropbox/dotfiles/config/ssh/known_hosts,~/.ssh/known_hosts
 local/src/github.com/ay65535/yadr,~/.yadr
