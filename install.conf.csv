@@ -7,6 +7,7 @@ Dropbox/dotfiles/emacs.el,~/.emacs.el
 Dropbox/dotfiles/gnuplot_history,~/.gnuplot_history
 Dropbox/dotfiles/hgignore,~/.hgignore
 Dropbox/dotfiles/hgrc,~/.hgrc
+Dropbox/dotfiles/irbrc,~/.irbrc
 Dropbox/dotfiles/percol.d,~/.percol.d
 Dropbox/dotfiles/screenrc,~/.screenrc
 Dropbox/dotfiles.private/brew_api_token,~/.brew_api_token
@@ -16,9 +17,10 @@ Dropbox/dotfiles.private/secrets,~/.secrets
 local/src/github.com/ay65535/yadr,~/.yadr
 .yadr/git/gitconfig.osx,~/.gitconfig.os
 ${HOME}/.yadr/tmux/tmux.conf,~/.tmux.conf
-Dropbox/dotfiles/yankring-history_v2.txt,~/.yankring-history_v2.txt
+#Dropbox/dotfiles/yankring-history_v2.txt,~/.yankring-history_v2.txt
 Dropbox/bin,~/bin
 local,~/.local
+.gitignore,~/.gitignore_global
 ../Dropbox/Library/TexShop,~/Library/TexShop
 ../Dropbox/Library/texmf,~/Library/texmf
 ../../Dropbox/Library/Application Support/BathyScaphe,~/Library/Application Support/BathyScaphe

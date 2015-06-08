@@ -30,8 +30,8 @@
     stderr: true
   - # remove unnecessary tmux conf
     command: if [ $(ls -1 ~/.tmux.conf* | wc -l) = "2" ]; then case "$OSTYPE" in linux*) RMCONF=~/.tmux.conf ;; *) RMCONF=~/.tmux.conf.www ;; esac; rm -v $RMCONF; fi
-    stdout: true
-    stderr: true
+  - # remove unnecessary git config
+    command: rm -v ~/.gitconfig.osx; rm -v .gitconfig.linux || true
   - test -d ~/.yadr && sed -i '' -e '/^for config_file .*config_file$/d' ~/.yadr/zsh/prezto/runcoms/zshrc
   -
     command: if [[ "$(brew upgrade --all)" != "up-to-date" ]]; then brew cleanup && brew doctor || true; fi
