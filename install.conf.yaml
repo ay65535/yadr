@@ -28,6 +28,8 @@
     stdin: true
     stdout: true
     stderr: true
+  - # remove unnecessary .ls symlink
+    command: if [ -L ~/.ls ]; then rm ~/.ls; fi
   - # remove unnecessary tmux conf
     command: if [ $(ls -1 ~/.tmux.conf* | wc -l) = "2" ]; then case "$OSTYPE" in linux*) RMCONF=~/.tmux.conf ;; *) RMCONF=~/.tmux.conf.www ;; esac; rm -v $RMCONF; fi
   - # remove unnecessary git config
