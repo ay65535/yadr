@@ -15,6 +15,7 @@
   current = yellow reverse
   local = yellow
   remote = green
+
 [color "diff"]
   meta = yellow bold
   frag = magenta bold # line info
@@ -34,8 +35,8 @@
   snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
   snapshots = !git stash list --grep snapshot
 
-  #via http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
-  recent-branches = !git for-each-ref --count=15 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+  # via http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+  recent-branches = !git for-each-ref --count=5 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 
   # branch
   b = branch -v                     # branch (verbose)
@@ -164,10 +165,19 @@
 
   tr = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
 
+        co = checkout
+        promote = !$ZSH/bin/git-promote
+        wtf     = !$ZSH/bin/git-wtf
+        rank-contributors = !$ZSH/bin/git-rank-contributors
+        count   = !git shortlog -sn
+
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+
 [mergetool]
   prompt = false
+  #keepBackup = false
+
 [mergetool "mvimdiff"]
   cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
   keepbackup=false
@@ -220,10 +230,11 @@
 
   # Use custom `.gitignore` and `.gitattributes`
 	excludesfile = /Users/ats/local/src/github.com/ay65535/yadr/git/gitignore
+  #excludesfile = ~/Dropbox/dotfiles/config/git/ignore  # default if $XDG_COMFIG_HOME is set.
   #excludesfile = ~/Dropbox/dotfiles/gitignore
   #excludesfile = "~/Dropbox/dotfiles/.gitignore"
   #excludesfile = ~/.yadr/git/gitignore
-  #excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
 
   # Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -310,5 +321,7 @@
 #  insteadOf = https://ghe.example.com/
 
 [user]
-	name = ay65535
-	email = ay65535@icloud.com
+        name = ay65535
+        email = ay65535@icloud.com
+#[hub]
+#        protocol = https
