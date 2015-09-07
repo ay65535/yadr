@@ -39,7 +39,6 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'osx' \
   'homebrew' \
-  'python' \
   'syntax-highlighting' \
   'ssh' \
   'prompt'
@@ -102,9 +101,9 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 if [[ "$HOST" == iMac* ]]; then
   zstyle ':prezto:module:prompt' theme 'sorin'
 elif [[ "$HOST" == MacBook* ]]; then
-  zstyle ':prezto:module:prompt' theme 'skwp_mod'
-else
   zstyle ':prezto:module:prompt' theme 'steeef_modified'
+else
+  zstyle ':prezto:module:prompt' theme 'skwp_mod'
 fi
 
 
@@ -163,10 +162,10 @@ zstyle ':prezto:module:ssh-agent' forwarding 'yes'
 # By default, only the main highlighter is enabled.   # prezto
 zstyle ':prezto:module:syntax-highlighting' highlighters \
    'main' \
-   'brackets' \
-   'pattern' \
-   'cursor' \
-   'root'
+   #'brackets' \
+   #'pattern' \
+   #'cursor' \
+   #'root'
 ## from prezto
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \
