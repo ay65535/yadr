@@ -98,9 +98,9 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-if [[ "$HOST" == iMac* ]]; then
+if [[ "$HOST" == *iMac* ]]; then
   zstyle ':prezto:module:prompt' theme 'sorin'
-elif [[ "$HOST" == MacBook* ]]; then
+elif [[ "$HOST" == *MacBook* ]]; then
   zstyle ':prezto:module:prompt' theme 'steeef_modified'
 else
   zstyle ':prezto:module:prompt' theme 'skwp_mod'
