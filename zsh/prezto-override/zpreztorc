@@ -5,7 +5,7 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-[[ "$ZVERVOSE_MODE" = true ]] && echo ".zpreztorc loading!" >>! ~/set_zsh.txt
+[[ "$ZVERVOSE_MODE" = true ]] && echo ".zpreztorc loading!" >>! /tmp/set_zsh.txt
 
 #
 # General
@@ -206,10 +206,10 @@ zstyle ':prezto:module:terminal' auto-title 'yes'
 zstyle ':prezto:module:tmux:iterm' integrate 'yes'
 
 if [[ "$ZVERVOSE_MODE" = true ]]; then
-  setopt >! ~/set_opts_4_zpreztorc.txt
-  functions >! ~/set_functions_4_zpreztorc.txt
-  export >! ~/set_exports_4_zpreztorc.txt
-  echo "MANPATH=$MANPATH" >>! ~/set_exports_4_zpreztorc.txt
-  echo "fpath=$fpath" >>! ~/set_exports_4_zpreztorc.txt
-  echo ".zpreztorc loaded!" >>! ~/set_zsh.txt
+  setopt >! /tmp/set_opts_4_zpreztorc.txt
+  functions >! /tmp/set_functions_4_zpreztorc.txt
+  export >! /tmp/set_exports_4_zpreztorc.txt
+  echo "MANPATH=$MANPATH" >>! /tmp/set_exports_4_zpreztorc.txt
+  echo "fpath=$fpath" >>! /tmp/set_exports_4_zpreztorc.txt
+  echo ".zpreztorc loaded!" >>! /tmp/set_zsh.txt
 fi
