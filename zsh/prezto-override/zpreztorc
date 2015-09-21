@@ -96,6 +96,8 @@ zstyle ':prezto:module:git:status:ignore' submodules 'all'
 # Auto set to 'off' on dumb terminals.
 if [[ "$HOST" == *iMac* ]]; then
   zstyle ':prezto:module:prompt' theme 'sorin'
+elif [[ "$HOST" == *MBP* ]]; then
+  zstyle ':prezto:module:prompt' theme 'steeef_modified'
 elif [[ "$HOST" == *MacBook* ]]; then
   zstyle ':prezto:module:prompt' theme 'steeef_modified'
 else
