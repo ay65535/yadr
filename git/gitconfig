@@ -327,3 +327,5 @@
 	email = ay65535@icloud.com
 #[hub]
 #        protocol = https
+#[add]
+#	ignoreErrors = --list
